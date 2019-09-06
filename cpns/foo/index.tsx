@@ -16,7 +16,7 @@ export default class Foo extends Component<FooInterface, {}> {
     return (
       <View>
         <Text>
-          foo
+          jjjjjjjj
         </Text>
       </View>
     )
