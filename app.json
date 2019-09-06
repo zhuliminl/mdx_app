@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "TheoryFinTechApp",
+    "description": "This project is really great.",
+    "slug": "TheoryFinTechApp",
+    "privacy": "public",
+    "sdkVersion": "31.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "cn.zthing.fintech",
+      "publishBundlePath": "ios/theoryfintechapp/Supporting/shell-app.bundle",
+      "publishManifestPath": "ios/theoryfintechapp/Supporting/shell-app-manifest.json"
+    },
+    "android": {
+      "package": "cn.zthing.fintech",
+      "publishBundlePath": "android/app/src/main/assets/shell-app.bundle",
+      "publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json"
+    },
+    "scheme": "expe624ab79e3cc4171bda7f506f870b230"
+  }
+}
