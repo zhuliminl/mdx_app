@@ -32,14 +32,14 @@ const styles = StyleSheet.create({
     zIndex: -999,
     position: 'absolute',
     width: device.width,
-    height: 300,
+    height: 340,
     backgroundColor: '#E73939',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   img: {
-    width: 200,
-    height: 200,
+    width: 240,
+    height: 240,
   }
 })

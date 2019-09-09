@@ -38,7 +38,7 @@ class HomeScreen extends React.Component<HomeProps, HomeState> {
     // 如果没有登录，则跳转登录，否则跳转信息
     const logined = true
     if (logined) {
-      return navigation.push('Messages')
+      return navigation && navigation.push('Messages')
     }
   }
 
@@ -55,7 +55,10 @@ class HomeScreen extends React.Component<HomeProps, HomeState> {
             onLeftClick={this.handleOnHeaderLeftClick}
             onRightClick={this.handleOnHeaderRightClick}
           />
-          <Slogan />
+          <Slogan
+            title={'在你需要的时候，有我'}
+            subTitle={'赤兔贷 极速放贷 轻松还款'}
+          />
           <HomeBg />
           <BorrowingLimitCard />
           <WaitingReturn />
