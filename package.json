@@ -64,6 +64,7 @@
     "@types/react-native": "^0.60.11",
     "@types/react-navigation": "^3.0.8",
     "babel-preset-expo": "^5.0.0",
+    "jetifier": "^1.6.4",
     "react-native-typescript-transformer": "^1.2.13",
     "redux-devtools-extension": "^2.13.8",
     "rn-nodeify": "^10.0.1",

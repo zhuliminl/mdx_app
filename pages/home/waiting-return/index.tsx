@@ -4,7 +4,9 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { device } from '@/utils/device'
 
 export interface WaitingReturnInterface {
-
+  dateStr: string;
+  moneyNumber: number;
+  onItemPress: () => void;
 }
 
 
@@ -14,18 +16,22 @@ export default class WaitingReturn extends Component<WaitingReturnInterface, {}>
   }
 
   render() {
+    const { dateStr = '', moneyNumber = 0, onItemPress } = this.props
     return (
       <View style={styles.wraper}>
         <View style={styles.left_wraper}>
-          <Text style={styles.date_txt}>2018年10月9日</Text>
+          <Text style={styles.date_txt}>{dateStr}</Text>
           <View style={styles.money_wraper}>
-            <Text style={styles.money_txt}>20,000</Text>
+            <Text style={styles.money_txt}>{moneyNumber}</Text>
             <Text style={styles.money_yuan_txt}>元</Text>
           </View>
         </View>
 
         <TouchableOpacity
           style={styles.btn_wraper}
+          onPress={() => {
+            onItemPress && onItemPress()
+          }}
         >
           <Text style={styles.btn_txt}>待还款</Text>
         </TouchableOpacity>

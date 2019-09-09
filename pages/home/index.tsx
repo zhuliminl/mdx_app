@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, ScrollView, StyleSheet, Text, Animated, Easing } from 'react-native';
+import { View, ScrollView, StyleSheet, Text, Animated, Easing, StatusBar } from 'react-native';
 import { device } from '@/utils/device'
 import SplashScreen from 'react-native-splash-screen';
 import HomeHeader from './home-header'
@@ -48,6 +48,10 @@ class HomeScreen extends React.Component<HomeProps, HomeState> {
       <View
         style={styles.container}
       >
+        <StatusBar
+          backgroundColor={'transparent'}
+          translucent
+        />
         <ScrollView
           style={styles.scrollWraper}
           alwaysBounceVertical={!this.state.showMy === true}
@@ -62,7 +66,13 @@ class HomeScreen extends React.Component<HomeProps, HomeState> {
               toast('去借款吧')
             }}
           />
-          <WaitingReturn />
+          <WaitingReturn
+            dateStr={'2019年09月13日'}
+            moneyNumber={30000}
+            onItemPress={() => {
+              toast('待还款')
+            }}
+          />
           <HomeBtn />
           <My
             show={this.state.showMy}
@@ -82,6 +92,8 @@ class HomeScreen extends React.Component<HomeProps, HomeState> {
 
 const styles = StyleSheet.create({
   container: {
+    position: 'absolute',
+    top: 0,
     width: device.width,
     height: device.height,
     // backgroundColor: 'red'
