@@ -1,6 +1,6 @@
 import Toast from "react-native-root-toast"
 
-const toast = (msg) => {
+const toast = (msg: string) => {
   return Toast.show(msg, {
     duration: Toast.durations.SHORT,
     position: Toast.positions.CENTER,

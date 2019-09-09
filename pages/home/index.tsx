@@ -12,6 +12,7 @@ import { routes } from '../../Routes'
 import { NavigationScreenProp, NavigationNavigatorProps, NavigationTransitionProps, createStackNavigator } from 'react-navigation'
 import UpdateModalScreen from '../update/UpdateModal';
 import My from '../My'
+import toast from '@/utils/toast';
 
 export interface HomeProps extends NavigationTransitionProps {
 }
@@ -51,16 +52,16 @@ class HomeScreen extends React.Component<HomeProps, HomeState> {
           style={styles.scrollWraper}
           alwaysBounceVertical={!this.state.showMy === true}
         >
-          <HomeHeader
-            onLeftClick={this.handleOnHeaderLeftClick}
-            onRightClick={this.handleOnHeaderRightClick}
-          />
-          <Slogan
-            title={'在你需要的时候，有我'}
-            subTitle={'赤兔贷 极速放贷 轻松还款'}
-          />
+          <HomeHeader onLeftClick={this.handleOnHeaderLeftClick} onRightClick={this.handleOnHeaderRightClick} />
+          <Slogan title={'在你需要的时候，有我'} subTitle={'赤兔贷 极速放贷 轻松还款'} />
           <HomeBg />
-          <BorrowingLimitCard />
+          <BorrowingLimitCard
+            limitNumber={3000}
+            leftNumber={1000}
+            onGotoBorrowBtnPress={() => {
+              toast('去借款吧')
+            }}
+          />
           <WaitingReturn />
           <HomeBtn />
           <My
