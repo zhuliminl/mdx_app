@@ -5,7 +5,8 @@ import Contacts from "./pages/contacts/Contacts";
 import Back from "./pages/Back";
 import MyCenter from "./pages/MyCenter";
 import Logup from "./pages/Logup";
-import BorrowCenter from "./pages/BorrowCenter";
+// import BorrowCenter from "./pages/BorrowCenter";
+import BorrowCenter from './pages/brrow_center'
 import BorrowConfirm from "./pages/BorrowConfirm";
 import AddBankCard from "./pages/AddBankCard";
 import Messages from "./pages/Messages";

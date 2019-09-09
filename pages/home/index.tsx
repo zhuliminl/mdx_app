@@ -75,6 +75,8 @@ class HomeScreen extends React.Component<HomeProps, HomeState> {
             leftNumber={1000}
             onGotoBorrowBtnPress={() => {
               toast('去借款吧')
+              const { navigation } = this.props
+              navigation && navigation.navigate('BorrowCenter')
             }}
           />
           <WaitingReturn
