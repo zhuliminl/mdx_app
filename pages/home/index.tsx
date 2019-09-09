@@ -11,6 +11,7 @@ import HomeBtn from './home-btn'
 import { routes } from '../../Routes'
 import { NavigationScreenProp, NavigationNavigatorProps, NavigationTransitionProps, createStackNavigator } from 'react-navigation'
 import UpdateModalScreen from '../update/UpdateModal';
+import My from '../My'
 
 export interface HomeProps extends NavigationTransitionProps {
 }
@@ -19,13 +20,17 @@ export interface HomeState {
 }
 
 class HomeScreen extends React.Component<HomeProps, HomeState> {
+  state = {
+    showMy: false,
+  }
 
   componentDidMount = () => {
     SplashScreen.hide()
   }
 
   handleOnHeaderLeftClick = () => {
-
+    // 如果没有登录，则跳转登录
+    this.setState({ showMy: true });
   }
 
   handleOnHeaderRightClick = () => {
@@ -35,7 +40,6 @@ class HomeScreen extends React.Component<HomeProps, HomeState> {
     if (logined) {
       return navigation.push('Messages')
     }
-
   }
 
   public render() {
@@ -45,6 +49,7 @@ class HomeScreen extends React.Component<HomeProps, HomeState> {
       >
         <ScrollView
           style={styles.scrollWraper}
+          alwaysBounceVertical={!this.state.showMy === true}
         >
           <HomeHeader
             onLeftClick={this.handleOnHeaderLeftClick}
@@ -55,6 +60,16 @@ class HomeScreen extends React.Component<HomeProps, HomeState> {
           <BorrowingLimitCard />
           <WaitingReturn />
           <HomeBtn />
+          <My
+            show={this.state.showMy}
+            // showStatus={this.state.showStatus}
+            // order={this.state.borrowOrder}
+            navigation={this.props.navigation}
+            // bank={this.state.bank}
+            // sc={this.state.service_contact}
+            onClose={() => {
+              this.setState({ showMy: false })
+            }} />
         </ScrollView>
       </View>
     );
