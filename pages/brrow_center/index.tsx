@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, StatusBar } from 'react-native'
 import { device } from '@/utils/device'
+import Header from '@/components/header'
 
 export interface HomeBgInterface {
 
@@ -15,6 +16,9 @@ export default class BrrowCenter extends Component<HomeBgInterface, {}> {
   render() {
     return (
       <View>
+        <StatusBar backgroundColor="#FFF" barStyle="dark-content" />
+        <Header title={'借款'} />
+        <View style={{height: 60,}}></View>
         <Text>借款中心</Text>
       </View>
     )
