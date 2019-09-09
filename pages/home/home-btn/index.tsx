@@ -4,7 +4,8 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { device } from '@/utils/device'
 
 export interface HomeBtnInterface {
-
+  onUpgradeBtnPress: () => void;
+  onReturnBtnPress: () => void;
 }
 
 
@@ -14,12 +15,17 @@ export default class HomeBtn extends Component<HomeBtnInterface, {}> {
   }
 
   render() {
+    const { onUpgradeBtnPress, onReturnBtnPress } = this.props
     return (
       <View style={styles.wraper}>
-        <TouchableOpacity style={styles.upgrade_btn}>
+        <TouchableOpacity style={styles.upgrade_btn} onPress={() => {
+          onUpgradeBtnPress && onUpgradeBtnPress()
+        }}>
           <Text style={styles.upgrade_txt}>提额</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.return_btn}>
+        <TouchableOpacity style={styles.return_btn} onPress={() => {
+          onReturnBtnPress && onReturnBtnPress()
+        }}>
           <Text style={styles.return_txt}>还款</Text>
         </TouchableOpacity>
       </View>
@@ -37,6 +43,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
 
   },
+
   upgrade_btn: {
     height: 40,
     paddingHorizontal: 50,
@@ -66,6 +73,4 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontSize: 18,
   },
-
-
 })

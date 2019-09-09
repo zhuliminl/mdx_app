@@ -29,11 +29,13 @@ class HomeScreen extends React.Component<HomeProps, HomeState> {
     SplashScreen.hide()
   }
 
+  // 打开侧边栏
   handleOnHeaderLeftClick = () => {
     // 如果没有登录，则跳转登录
     this.setState({ showMy: true });
   }
 
+  // 去信息页面
   handleOnHeaderRightClick = () => {
     const { navigation } = this.props
     // 如果没有登录，则跳转登录，否则跳转信息
@@ -41,6 +43,15 @@ class HomeScreen extends React.Component<HomeProps, HomeState> {
     if (logined) {
       return navigation && navigation.push('Messages')
     }
+  }
+
+  // 提额
+  handleOnUpgradeBtnPress = () => {
+    toast('提额')
+  }
+  // 还款
+  handleOnReturnBtnPress = () => {
+    toast('还款')
   }
 
   public render() {
@@ -73,7 +84,10 @@ class HomeScreen extends React.Component<HomeProps, HomeState> {
               toast('待还款')
             }}
           />
-          <HomeBtn />
+          <HomeBtn
+            onUpgradeBtnPress={this.handleOnUpgradeBtnPress}
+            onReturnBtnPress={this.handleOnReturnBtnPress}
+          />
           <My
             show={this.state.showMy}
             // showStatus={this.state.showStatus}
