@@ -38,7 +38,9 @@ export default class ${titleCase(dirName)} extends Component<${titleCase(dirName
 
   render() {
     return (
-      <View>
+      <View
+        style={styles.wraper}
+      >
         <Text>
           ${dirName}
         </Text>
@@ -46,6 +48,11 @@ export default class ${titleCase(dirName)} extends Component<${titleCase(dirName
     )
   }
 }
+
+const styles = StyleSheet.create({
+  wraper: {
+  }
+})
 `
 
 
@@ -61,7 +68,7 @@ function changeCap(str) {
 }
 
 function titleCase(str) {
-  return str.split("_").map((val) => changeCap(val)).join("");
+  return str.split("-").map((val) => changeCap(val)).join("");
 }
 
 process.exit(0)

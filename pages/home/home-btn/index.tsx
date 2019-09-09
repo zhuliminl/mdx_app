@@ -2,12 +2,12 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-export interface FooInterface {
+export interface HomeBtnInterface {
 
 }
 
 
-export default class Foo extends Component<FooInterface, {}> {
+export default class HomeBtn extends Component<HomeBtnInterface, {}> {
 
   componentDidMount = () => {
   }
@@ -16,7 +16,7 @@ export default class Foo extends Component<FooInterface, {}> {
     return (
       <View>
         <Text>
-          jjjjjjjj
+          home-btn
         </Text>
       </View>
     )
