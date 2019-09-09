@@ -1,25 +1,42 @@
 import React, { Component } from 'react'
-import { View, Text, Image, StyleSheet, StatusBar } from 'react-native'
+import { View, Text, Image, StyleSheet, StatusBar, ScrollView } from 'react-native'
 import { device } from '@/utils/device'
 import Header from '@/components/header'
+import MoneySlider from './money-slider'
 
-export interface HomeBgInterface {
+export interface BrrowCenterInterface {
 
 }
 
 
-export default class BrrowCenter extends Component<HomeBgInterface, {}> {
+export default class BrrowCenter extends Component<BrrowCenterInterface, {}> {
+  state = {
+    money_number: 2000,
+  }
 
   componentDidMount = () => {
   }
 
+  handleOnSliderChange = () => {
+
+  }
+
   render() {
     return (
-      <View>
+      <View style={styles.wraper}>
         <StatusBar backgroundColor="#FFF" barStyle="dark-content" />
         <Header title={'借款'} />
-        <View style={{height: 60,}}></View>
-        <Text>借款中心</Text>
+        <ScrollView
+          style={styles.scroll_wraper}
+        >
+          <View style={{ height: 60, }}></View>
+
+          <MoneySlider
+            money_number={this.state.money_number}
+            onSliderChange={this.handleOnSliderChange}
+          />
+
+        </ScrollView>
       </View>
     )
   }
@@ -28,14 +45,12 @@ export default class BrrowCenter extends Component<HomeBgInterface, {}> {
 const styles = StyleSheet.create({
   wraper: {
     width: device.width,
-    height: 340,
-    backgroundColor: '#E73939',
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    height: device.height,
   },
-  img: {
-    width: 240,
-    height: 240,
-  }
+  scroll_wraper: {
+    width: device.width,
+    height: device.height,
+    backgroundColor: '#FFF',
+
+  },
 })
