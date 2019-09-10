@@ -3,13 +3,14 @@ import { View, Text, Image, StyleSheet, StatusBar, ScrollView } from 'react-nati
 import { device } from '@/utils/device'
 import Header from '@/components/header'
 import MoneySlider from './money-slider'
+import DeadlineCards from './deadline-cards'
 
-export interface BrrowCenterInterface {
+export interface BorrowCenterInterface {
 
 }
 
 
-export default class BrrowCenter extends Component<BrrowCenterInterface, {}> {
+export default class BorrowCenter extends Component<BorrowCenterInterface, {}> {
   state = {
     money_number: 2000,
   }
@@ -26,15 +27,19 @@ export default class BrrowCenter extends Component<BrrowCenterInterface, {}> {
       <View style={styles.wraper}>
         <StatusBar backgroundColor="#FFF" barStyle="dark-content" />
         <Header title={'借款'} />
+
         <ScrollView
           style={styles.scroll_wraper}
         >
           <View style={{ height: 60, }}></View>
 
+          {/* 金额选择器 */}
           <MoneySlider
             money_number={this.state.money_number}
             onSliderChange={this.handleOnSliderChange}
           />
+          {/* 时间期限 */}
+          <DeadlineCards />
 
         </ScrollView>
       </View>
