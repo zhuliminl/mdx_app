@@ -71,11 +71,14 @@ const styles = StyleSheet.create({
     color: '#E73939',
     fontSize: 24,
     fontWeight: 'bold',
+    fontFamily: 'DIN-Bold',
   },
   money_yuan_txt: {
     color: '#E73939',
     fontSize: 14,
     fontWeight: 'bold',
+    position: 'relative',
+    top: -3,
 
   },
   btn_wraper: {

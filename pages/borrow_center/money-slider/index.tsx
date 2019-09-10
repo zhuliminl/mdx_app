@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     color: '#E73939',
     fontSize: 40,
     fontWeight: 'bold',
+    fontFamily: 'DIN-Bold',
   },
   slider: {
     height: 60,

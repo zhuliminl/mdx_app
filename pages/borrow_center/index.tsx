@@ -4,6 +4,7 @@ import { device } from '@/utils/device'
 import Header from '@/components/header'
 import MoneySlider from './money-slider'
 import DeadlineCards from './deadline-cards'
+import Bill from './bill'
 
 export interface BorrowCenterInterface {
 
@@ -39,7 +40,13 @@ export default class BorrowCenter extends Component<BorrowCenterInterface, {}> {
             onSliderChange={this.handleOnSliderChange}
           />
           {/* 时间期限 */}
-          <DeadlineCards />
+          <DeadlineCards
+            borrowDeadline={7}
+            amortizationDeadline={4}
+          />
+
+          {/* 账单下一步 */}
+          <Bill />
 
         </ScrollView>
       </View>

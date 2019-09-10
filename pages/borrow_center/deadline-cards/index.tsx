@@ -4,13 +4,13 @@ import { tm } from '@/utils/theme'
 const { icons } = tm
 
 export interface DeadlineCardsInterface {
-
+  borrowDeadline: number;
+  amortizationDeadline: number;
 }
 
 export interface ItemInterface {
   title: string;
   dateStr: string;
-
 }
 
 const Item = (props: ItemInterface) => {
@@ -24,19 +24,17 @@ const Item = (props: ItemInterface) => {
   )
 }
 
-
 export default class DeadlineCards extends Component<DeadlineCardsInterface, {}> {
 
   componentDidMount = () => {
   }
 
   render() {
+    const { borrowDeadline, amortizationDeadline } = this.props
     return (
-      <View
-        style={styles.wraper}
-      >
-        <Item title='选择借款期限' dateStr='借7天' />
-        <Item title='选择分期期限' dateStr='分2天' />
+      <View style={styles.wraper} >
+        <Item title='选择借款期限' dateStr={`借${borrowDeadline}天`} />
+        <Item title='选择分期期限' dateStr={`分${amortizationDeadline}天`} />
       </View>
     )
   }

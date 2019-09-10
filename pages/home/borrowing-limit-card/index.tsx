@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     color: '#333',
     fontSize: 36,
     fontWeight: 'bold',
+    fontFamily: 'DIN-Bold',
   },
   desc_wraper: {
     marginTop: 20,
