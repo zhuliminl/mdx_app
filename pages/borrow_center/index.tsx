@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { View, Text, Image, StyleSheet, StatusBar, ScrollView } from 'react-native'
+import { NavigationTransitionProps } from 'react-navigation'
 import { device } from '@/utils/device'
 import Header from '@/components/header'
 import MoneySlider from './money-slider'
 import DeadlineCards from './deadline-cards'
 import Bill from './bill'
+import toast from '@/utils/toast'
 
-export interface BorrowCenterInterface {
+export interface BorrowCenterInterface extends NavigationTransitionProps {
 
 }
 
@@ -23,15 +25,18 @@ export default class BorrowCenter extends Component<BorrowCenterInterface, {}> {
 
   }
 
+  handleOnNextBtnPress = () => {
+    const { navigation } = this.props
+    navigation && navigation.navigate('BorrowConfirm')
+  }
+
   render() {
     return (
       <View style={styles.wraper}>
         <StatusBar backgroundColor="#FFF" barStyle="dark-content" />
         <Header title={'借款'} />
 
-        <ScrollView
-          style={styles.scroll_wraper}
-        >
+        <ScrollView style={styles.scroll_wraper}>
           <View style={{ height: 60, }}></View>
 
           {/* 金额选择器 */}
@@ -46,7 +51,7 @@ export default class BorrowCenter extends Component<BorrowCenterInterface, {}> {
           />
 
           {/* 账单下一步 */}
-          <Bill />
+          <Bill onNextBtnPress={this.handleOnNextBtnPress} />
 
         </ScrollView>
       </View>

@@ -7,7 +7,8 @@ import MyCenter from "./pages/MyCenter";
 import Logup from "./pages/Logup";
 // import BorrowCenter from "./pages/BorrowCenter";
 import BorrowCenter from './pages/borrow_center'
-import BorrowConfirm from "./pages/BorrowConfirm";
+// import BorrowConfirm from "./pages/BorrowConfirm";
+import BorrowConfirm from "./pages/borrow_confirm";
 import AddBankCard from "./pages/AddBankCard";
 import Messages from "./pages/Messages";
 import Waiting from "./pages/Waiting";

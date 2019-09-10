@@ -6,7 +6,7 @@ import toast from '@/utils/toast'
 import ReturnPlan from '@/components/return-plan'
 
 export interface BillInterface {
-
+  onNextBtnPress: () => void;
 }
 
 
@@ -16,6 +16,7 @@ export default class Bill extends Component<BillInterface, {}> {
   }
 
   render() {
+    const { onNextBtnPress } = this.props
     return (
       <View style={styles.wraper} >
         <View style={styles.wraper_inner}>
@@ -32,7 +33,7 @@ export default class Bill extends Component<BillInterface, {}> {
             <TouchableOpacity
               style={styles.next_step_btn}
               onPress={() => {
-                toast('选好了')
+                onNextBtnPress && onNextBtnPress()
               }}
             >
               <Text style={styles.next_step_btn_txt}>选好了，下一步</Text>

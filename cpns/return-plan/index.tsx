@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 export interface ReturnPlanInterface {
-
+  wraperStyle?: any;
 }
 
 
@@ -13,8 +13,9 @@ export default class ReturnPlan extends Component<ReturnPlanInterface, {}> {
   }
 
   render() {
+    const { wraperStyle } = this.props
     return (
-      <View style={styles.wraper} >
+      <View style={[styles.wraper, wraperStyle]} >
         <View style={styles.divide_line}></View>
         <Text style={styles.title_txt}>还款计划</Text>
 
@@ -49,12 +50,12 @@ const styles = StyleSheet.create({
   divide_line: {
     width: 200,
     height: 1,
-    backgroundColor: '#999',
+    backgroundColor: '#333',
   },
   title_txt: {
     width: 100,
     // backgroundColor: '#999',
-    color: '#666',
+    color: '#333',
     backgroundColor: '#FFF',
     fontSize: 14,
     position: 'relative',
