@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { device } from '@/utils/device'
 import toast from '@/utils/toast'
+import ReturnPlan from '@/components/return-plan'
 
 export interface BillInterface {
 
@@ -46,6 +47,8 @@ export default class Bill extends Component<BillInterface, {}> {
             <Text style={styles.deadline_item_txt}>到账金额：1800.00元</Text>
             <Text style={styles.deadline_item_txt}>分期期限： 3天</Text>
           </View>
+          {/* 还款计划 */}
+          <ReturnPlan />
 
         </View>
       </View>
@@ -61,13 +64,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#F5F6F7',
     justifyContent: 'center',
+    paddingBottom: 50,
   },
   wraper_inner: {
     paddingTop: 20,
     paddingHorizontal: 20,
+    paddingBottom: 30,
     borderRadius: 10,
     width: device.width - 20,
-    height: 300,
     backgroundColor: '#FFF',
   },
 
@@ -96,7 +100,7 @@ const styles = StyleSheet.create({
     top: -3,
   },
   money_txt: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
     color: '#333',
     fontFamily: 'DIN-Bold'
