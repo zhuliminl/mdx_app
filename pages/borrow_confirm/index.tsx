@@ -4,6 +4,7 @@ import { NavigationTransitionProps } from 'react-navigation'
 import Header from '@/components/header'
 import { device } from '@/utils/device'
 import ReturnPlan from '@/components/return-plan'
+import toast from '@/utils/toast'
 
 export interface BorrowConfirmProps extends NavigationTransitionProps {
 }
@@ -12,6 +13,15 @@ export interface BorrowConfirmState {
 }
 
 class BorrowConfirmScreen extends React.Component<BorrowConfirmProps, BorrowConfirmState> {
+
+  handleOnConfirmBtnPress = () => {
+    toast('正在提交订单')
+  }
+
+  handleOnClauseTextPress = () => {
+    toast('查看协议')
+  }
+
   render() {
     return (
       <View style={styles.wraper}>
@@ -42,15 +52,13 @@ class BorrowConfirmScreen extends React.Component<BorrowConfirmProps, BorrowConf
               wraperStyle={{ paddingHorizontal: 20, }}
             />
 
-            <TouchableOpacity style={styles.confirm_btn} >
+            <TouchableOpacity style={styles.confirm_btn} onPress={this.handleOnConfirmBtnPress}>
               <Text style={styles.confirm_btn_txt}>确认</Text>
             </TouchableOpacity>
 
             <View style={styles.clause_hint_wraper}>
               <Text style={styles.clause_hint_txt_grey}>确认即表示同意</Text>
-              <TouchableOpacity onPress={() => {
-
-              }}>
+              <TouchableOpacity onPress={this.handleOnClauseTextPress}>
                 <Text style={styles.clause_hint_txt_red}>《xxxx借款协议》</Text>
               </TouchableOpacity>
             </View>
