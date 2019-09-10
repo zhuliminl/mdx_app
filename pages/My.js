@@ -51,12 +51,14 @@ export default class My extends React.Component {
       show: null,
       mobile: null,
       bank: null,
-      sc: {}
+      sc: {},
+      hidden_status_bar: true,
     };
 
   }
 
   async componentWillReceiveProps(nextProps) {
+    this.setState({ hidden_status_bar: true, })
     switch (nextProps['show']) {
       case null:
         this.setState({ aName: '', show: null });
@@ -124,7 +126,15 @@ export default class My extends React.Component {
     });
   }
 
+  // 都有认证和登录的拦截
   goBorrowRecords() {
+    this.setState({ hidden_status_bar: false, })
+    // FIXME: 暂时不管拦截
+    const { navigation } = this.props
+    if (navigation) {
+      return navigation.push('BorrowRecords')
+    }
+
     switch (this.props.showStatus) {
       case 0:
         return Toast('请先登录');
@@ -197,7 +207,7 @@ export default class My extends React.Component {
     if (this.state.show === true) {
       return (
         <View style={[styles.container, this.props['style']]}>
-          <StatusBar hidden={true} />
+          <StatusBar hidden={this.state.hidden_status_bar} />
           <Animatable.View duration={300} animation={this.state.aName} style={styles.myBar}>
             <View style={styles.header}>
               <TouchableOpacity style={styles.avatarOuter} onPress={() => { this.props.navigation.push('MyCenter') }}>
@@ -208,6 +218,14 @@ export default class My extends React.Component {
             </View>
 
             <View style={styles.list}>
+              <TouchableOpacity style={styles.listItem} onPress={() => { this.goBorrowRecords() }}>
+                <Image
+                  style={[styles.lIcon, styles.lIconBorrowOrder]}
+                  source={icons.sideBar.borrowOrder} />
+                <View style={styles.lIC}>
+                  <Text style={styles.lICT}>我的借款记录</Text>
+                </View>
+              </TouchableOpacity>
               <TouchableOpacity onPress={() => {
                 this.goWaiting();
               }} style={styles.listItem}>
@@ -217,6 +235,14 @@ export default class My extends React.Component {
                 <View style={styles.lIC}>
                   <Text style={styles.lICT}>我的待还</Text>
                   {this.getWaiting()}
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.listItem} onPress={() => { this.goBorrowRecords() }}>
+                <Image
+                  style={[styles.lIcon, styles.lIconBorrowOrder]}
+                  source={icons.sideBar.borrowOrder} />
+                <View style={styles.lIC}>
+                  <Text style={styles.lICT}>我的借款单</Text>
                 </View>
               </TouchableOpacity>
 
@@ -230,14 +256,6 @@ export default class My extends React.Component {
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.listItem} onPress={() => { this.goBorrowRecords() }}>
-                <Image
-                  style={[styles.lIcon, styles.lIconBorrowOrder]}
-                  source={icons.sideBar.borrowOrder} />
-                <View style={styles.lIC}>
-                  <Text style={styles.lICT}>我的借款单</Text>
-                </View>
-              </TouchableOpacity>
 
               <TouchableOpacity style={styles.listItem} onPress={() => { this.goUpgrade() }}>
                 <Image

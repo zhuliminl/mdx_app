@@ -1,6 +1,7 @@
 import AuthenticationCenter from "./pages/auth";
 import BackSuccess from "./pages/BackSuccess";
-import BorrowRecords from "./pages/BorrowRecords";
+// import BorrowRecords from "./pages/BorrowRecords";
+import BorrowRecords from "./pages/order_records";
 import Contacts from "./pages/contacts/Contacts";
 import Back from "./pages/Back";
 import MyCenter from "./pages/MyCenter";
