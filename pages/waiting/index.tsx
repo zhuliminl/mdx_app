@@ -8,6 +8,8 @@ import OrderStatusBanner from './order-status-banner'
 import StageHeader from './stage-header'
 import StageCard from './stage-card'
 import OrderDetail from './order-detail'
+import DetailModal from './detail-modal'
+
 
 import { OrderStatus, StageStatus } from '@/utils/AppEnum'
 
@@ -57,6 +59,9 @@ const stageData = [
   },
 ]
 
+const modalData = {
+
+}
 
 export default class WaitingScreen extends Component<WaitingInterface, {}> {
   state = {
@@ -99,8 +104,14 @@ export default class WaitingScreen extends Component<WaitingInterface, {}> {
           <TouchableOpacity style={styles.confirm_btn} onPress={this.handleOnConfirmBtnPress}>
             <Text style={styles.confirm_btn_txt}>还款</Text>
           </TouchableOpacity>
-
+          {/* 订单详情 */}
           <OrderDetail />
+          {/* 详情弹窗 */}
+          <DetailModal
+            isShow={true}
+            data={modalData}
+          />
+
 
         </ScrollView>
       </View>
