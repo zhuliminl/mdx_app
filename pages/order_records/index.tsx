@@ -17,7 +17,7 @@ const SECTIONS = [
     item: {
       money: 200000,
       dateStr: '2018年10月09日',
-      status: '审核中',
+      status: '待还款',
     },
     detail: [
       {
@@ -43,7 +43,7 @@ const SECTIONS = [
       dateStr: '2018年10月09日',
       status: '审核中',
     },
-    detail: [
+    _detail: [
       {
         stage: '第1期',
         deadline: '2019年10月1日',
@@ -65,69 +65,13 @@ const SECTIONS = [
 
 class OrderRecordsScreen extends React.Component<OrderRecordsProps, OrderRecordsState> {
   state = {
-    activeSections: [],
-  };
+  }
 
-  // _renderSectionTitle = (section: any) => {
-  //   return (
-  //     <View style={styles.content}>
-
-  //       <Text>xxxxxxxx</Text>
-  //     </View>
-  //   )
-  // }
-
-  _renderHeader = (section: any, index: number, isActive: boolean) => {
-    const { item = {} } = section
-    let activeStyle = {
-      transform: [{ rotateZ: '90deg' }, { scale: 0.8 }]
+  handleOnListItemPress = () => {
+    const { navigation } = this.props
+    if (navigation) {
+      navigation.navigate('Waiting')
     }
-    return (
-      <View style={styles.header_wraper}>
-        <View style={styles.header_left_wraper}>
-          <Text style={styles.header_money}>{item['money']}</Text>
-          <Text style={styles.header_date_txt}>{item['dateStr']}</Text>
-        </View>
-
-        <View style={styles.header_right_wraper}>
-          <Text style={styles.header_right_status_txt}>{item['status']}</Text>
-          {/* <Text style={styles.header_date_txt}>2018年</Text> */}
-        </View>
-        <View style={styles.header_right_arrow}>
-          <Image
-            style={[styles.arrow_grey, isActive ? activeStyle : {}]}
-            source={require('../../images/icons/arrow-dblue.png')} />
-        </View>
-      </View>
-    )
-  }
-
-  _renderContent = (section: any) => {
-    const { detail = [] } = section
-    return (
-      <View style={styles.content_wraper}>
-        <View style={styles.content_header_wraper} >
-          <Text style={styles.content_header_txt}>期数</Text>
-          <Text style={styles.content_header_txt}>应还时间</Text>
-          <Text style={styles.content_header_txt}>当前还款计划</Text>
-        </View>
-        {
-          detail && detail.map((item: any, i: number) => {
-            return (
-              <View style={styles.content_item_wraper} key={i}>
-                <Text style={styles.content_item_txt}>{item['stage']}</Text>
-                <Text style={styles.content_item_txt}>{item['deadline']}</Text>
-                <Text style={styles.content_item_txt}>{item['return_plan']}元</Text>
-              </View>
-            )
-          })
-        }
-      </View>
-    )
-  }
-
-  _updateSections = (activeSections: any) => {
-    this.setState({ activeSections })
   }
 
   render() {
@@ -139,17 +83,55 @@ class OrderRecordsScreen extends React.Component<OrderRecordsProps, OrderRecords
         <ScrollView style={styles.scroll_wraper}>
           <View style={{ height: 60, }}></View>
 
-          <Accordion
-            sections={SECTIONS}
-            underlayColor={'#FFF'}
-            activeSections={this.state.activeSections}
-            // renderSectionTitle={this._renderSectionTitle}
-            renderHeader={this._renderHeader}
-            renderContent={this._renderContent}
-            onChange={this._updateSections}
-          />
+          {
+            SECTIONS.map((section, i) => {
+              const { item = {} as any } = section
+              const { detail = [] as any } = section
+              return (
+                <View key={i}>
+                  {/* listitem header */}
+                  <TouchableOpacity style={styles.header_wraper} onPress={this.handleOnListItemPress}>
+                    <View style={styles.header_left_wraper}>
+                      <Text style={styles.header_money}>{item['money']}</Text>
+                      <Text style={styles.header_date_txt}>{item['dateStr']}</Text>
+                    </View>
 
-
+                    <View style={styles.header_right_wraper}>
+                      <Text style={styles.header_right_status_txt}>{item['status']}</Text>
+                      {/* <Text style={styles.header_date_txt}>2018年</Text> */}
+                    </View>
+                    <View style={styles.header_right_arrow}>
+                      <Image
+                        style={styles.arrow_grey}
+                        source={require('../../images/icons/arrow-dblue.png')} />
+                    </View>
+                  </TouchableOpacity>
+                  {/* 内容，这里的数据格式肯定会有变动，到时候再组织 */}
+                  {
+                    detail.length > 0 &&
+                    <View style={styles.content_wraper}>
+                      <View style={styles.content_header_wraper}>
+                        <Text style={styles.content_header_txt}>期数</Text>
+                        <Text style={styles.content_header_txt}>应还时间</Text>
+                        <Text style={styles.content_header_txt}>当前还款计划</Text>
+                      </View>
+                      {
+                        detail && detail.map((item: any, i: number) => {
+                          return (
+                            <View style={styles.content_item_wraper} key={i}>
+                              <Text style={styles.content_item_txt}>{item['stage']}</Text>
+                              <Text style={styles.content_item_txt}>{item['deadline']}</Text>
+                              <Text style={styles.content_item_txt}>{item['return_plan']}元</Text>
+                            </View>
+                          )
+                        })
+                      }
+                    </View>
+                  }
+                </View>
+              )
+            })
+          }
         </ScrollView>
       </View>
     )

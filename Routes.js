@@ -12,7 +12,8 @@ import BorrowCenter from './pages/borrow_center'
 import BorrowConfirm from "./pages/borrow_confirm";
 import AddBankCard from "./pages/AddBankCard";
 import Messages from "./pages/Messages";
-import Waiting from "./pages/Waiting";
+// import Waiting from "./pages/Waiting";
+import Waiting from "./pages/waiting";
 import BorrowDetail from "./pages/BorrowDetail";
 import SetPassword from "./pages/SetPassword";
 import ResetPassword from "./pages/ResetPassword";
