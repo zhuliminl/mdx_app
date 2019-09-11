@@ -1,12 +1,14 @@
 
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { StageItemInterface } from '../index'
 import { device } from '@/utils/device'
 import { StageStatus } from '@/utils/AppEnum'
 
 export interface StageCardInterface {
   data: StageItemInterface;
+  onSelect: () => void;
+  onDetailPress: () => void;
   // isSelected: boolean;
 }
 
@@ -43,11 +45,16 @@ export default class StageCard extends Component<StageCardInterface, {}> {
 
     return (
       <View style={[styles.wraper, isSelected ? activeStyle : {}]} >
-        <View style={styles.card_top_wraper}>
+        <TouchableOpacity style={styles.card_top_wraper} onPress={() => {
+          const { onSelect } = this.props
+          onSelect && onSelect()
+        }}>
+          {/* 逾期宣章 */}
           {
             status === StageStatus.overdue &&
             <Image style={styles.card_overdue_badge_img} source={require('../../../images/icons/overdue_red.png')} />
           }
+          {/* 单选 */}
           {
             isSelected ?
               <Image style={styles.card_selected_img} source={require('../../../images/icons/is_selected_red.png')} /> :
@@ -55,13 +62,16 @@ export default class StageCard extends Component<StageCardInterface, {}> {
           }
           <Text style={styles.card_top_stage_title_txt}>{data.stage}</Text>
           <Text style={styles.card_top_stage_date_txt}>应还时间{data.deadline}</Text>
-        </View>
-        <View style={styles.card_bottom_wraper}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.card_bottom_wraper} onPress={() => {
+          const { onDetailPress } = this.props
+          onDetailPress && onDetailPress()
+        }}>
           <Text style={styles.card_bottom_plan_title_txt}>计划还款:</Text>
           <Text style={styles.card_bottom_plan_money_txt}>{data.money_return_plan}元</Text>
           <Text style={[styles.card_bottom_plan_desc_txt, status === StageStatus.overdue ? warningStyle : {}]}>{descStr}</Text>
           <Image style={styles.card_arrow_img} source={require('../../../images/icons/arrow-dblue.png')} />
-        </View>
+        </TouchableOpacity>
       </View>
     )
   }

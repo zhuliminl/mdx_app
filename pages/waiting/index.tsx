@@ -46,7 +46,7 @@ const stageData = [
     status: StageStatus.overdue,
     money_return_plan: 200,
     money_return_left: 100,
-    isSelected: false,
+    isSelected: true,
   },
   {
     stage: '第3期',
@@ -60,11 +60,12 @@ const stageData = [
 ]
 
 const modalData = {
-
 }
 
 export default class WaitingScreen extends Component<WaitingInterface, {}> {
   state = {
+    isModalOpen: true,
+    modalData: {}
   }
 
   componentDidMount = () => {
@@ -72,9 +73,21 @@ export default class WaitingScreen extends Component<WaitingInterface, {}> {
 
 
 
-  handleOnConfirmBtnPress = () => {
+  handleOnReturnBtnPress = () => {
+    toast('还款')
 
   }
+
+  handleOnSelectPress = () => {
+    toast('点击了选择器')
+  }
+
+  handleOnDetailPress = () => {
+    this.setState({
+      isModalOpen: true,
+    })
+  }
+
 
   render() {
     return (
@@ -95,21 +108,27 @@ export default class WaitingScreen extends Component<WaitingInterface, {}> {
           {
             stageData && stageData.map((stageItem, i) => {
               return (
-                <StageCard data={stageItem} key={i} />
+                <StageCard
+                  key={i}
+                  data={stageItem}
+                  onSelect={this.handleOnSelectPress}
+                  onDetailPress={this.handleOnDetailPress}
+                />
               )
             })
           }
 
           <Text style={styles.notice_txt}>提醒：确认后不可取消该借款。为了您能积累良好的信用记录，请提前做好资金安排，以免逾期产生的不良后果。</Text>
-          <TouchableOpacity style={styles.confirm_btn} onPress={this.handleOnConfirmBtnPress}>
+          <TouchableOpacity style={styles.confirm_btn} onPress={this.handleOnReturnBtnPress}>
             <Text style={styles.confirm_btn_txt}>还款</Text>
           </TouchableOpacity>
           {/* 订单详情 */}
           <OrderDetail />
           {/* 详情弹窗 */}
           <DetailModal
-            isShow={true}
+            isShow={this.state.isModalOpen}
             data={modalData}
+            onConfirmBtnPress={() => { this.setState({ isModalOpen: false, }) }}
           />
 
 

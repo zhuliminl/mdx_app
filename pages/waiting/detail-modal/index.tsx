@@ -7,6 +7,7 @@ import { device } from '@/utils/device';
 export interface DetailModalInterface {
   data: any;
   isShow: boolean;
+  onConfirmBtnPress: () => void;
 }
 
 
@@ -43,7 +44,7 @@ export default class DetailModal extends Component<DetailModalInterface, {}> {
           </View>
           <View style={styles.table_header_wraper}>
             <Text style={styles.table_header_txt}>期数</Text>
-            <Text style={styles.table_header_txt}>应还时间</Text>
+            <Text style={styles.table_header_txt}>第一期</Text>
           </View>
           <View style={styles.table_content_wraper}>
             <Text style={styles.table_content_txt}>应还时间</Text>
@@ -81,7 +82,13 @@ export default class DetailModal extends Component<DetailModalInterface, {}> {
             <Text style={styles.table_content_txt}>状态</Text>
             <Text style={styles.table_content_txt}>逾期未结清</Text>
           </View>
-          <TouchableOpacity style={styles.confirm_wraper}>
+          <TouchableOpacity
+            style={styles.confirm_wraper}
+            onPress={() => {
+              const { onConfirmBtnPress } = this.props
+              onConfirmBtnPress && onConfirmBtnPress()
+            }}
+          >
             <Text style={styles.confirm_txt}>确认</Text>
           </TouchableOpacity>
         </Modal>
