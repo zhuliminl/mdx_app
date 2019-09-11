@@ -27,6 +27,11 @@ class HomeScreen extends React.Component<HomeProps, HomeState> {
 
   componentDidMount = () => {
     SplashScreen.hide()
+
+    // 开发中直接去正在开发的页面
+    const { navigation } = this.props
+    navigation.navigate('Waiting')
+
   }
 
   // 打开侧边栏

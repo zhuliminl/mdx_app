@@ -63,6 +63,8 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: 'bold',
     fontFamily: 'DIN-Bold',
+    // fontFamily: 'WeChatNumber-170206',
+    // fontFamily: 'WeChatNumber-151125',
   },
   desc_wraper: {
     marginTop: 20,
