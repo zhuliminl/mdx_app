@@ -31,8 +31,6 @@ export default class DetailModal extends Component<DetailModalInterface, {}> {
             backgroundColor: '#FFF',
             borderRadius: 10,
             overflow: 'hidden',
-            // justifyContent: 'center',
-            // alignItems: 'center'
           }}
         // swipeToClose={}
         // onClosed={this.onClose}
@@ -110,11 +108,9 @@ const styles = StyleSheet.create({
   header_txt: {
     fontSize: 18,
     color: '#000',
-    // fontWeight: 'bold',
     marginVertical: 16,
     alignSelf: 'center',
     textAlign: 'center',
-    // height: 40,
   },
   table_header_wraper: {
     flexDirection: 'row',

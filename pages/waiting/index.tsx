@@ -105,6 +105,7 @@ export default class WaitingScreen extends Component<WaitingInterface, {}> {
             data={{ dateCount: 7, cost: 888 }}
           />
           <StageHeader statgeNumber={3} />
+
           {
             stageData && stageData.map((stageItem, i) => {
               return (
@@ -174,6 +175,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#FFF',
     textAlign: 'center',
-
   }
 })

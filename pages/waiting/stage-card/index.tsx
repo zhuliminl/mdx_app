@@ -20,7 +20,7 @@ export default class StageCard extends Component<StageCardInterface, {}> {
 
   render() {
     const { data = {} as StageItemInterface } = this.props
-    const { isSelected = false, status } = data
+    const { isSelected = false, status, isOffline = false } = data
 
     let descStr = '状态错误'
     if (status === StageStatus.closed) {
@@ -67,12 +67,24 @@ export default class StageCard extends Component<StageCardInterface, {}> {
           const { onDetailPress } = this.props
           onDetailPress && onDetailPress()
         }}>
-          <Text style={styles.card_bottom_plan_title_txt}>计划还款:</Text>
-          <Text style={styles.card_bottom_plan_money_txt}>{data.money_return_plan}元</Text>
+          {
+            isOffline ?
+              (
+                <View>
+                  <Text>xxx</Text>
+                </View>
+              ) :
+              (
+                <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+                  <Text style={styles.card_bottom_plan_title_txt}>计划还款:</Text>
+                  <Text style={styles.card_bottom_plan_money_txt}>{data.money_return_plan}元</Text>
+                </View>
+              )
+          }
           <Text style={[styles.card_bottom_plan_desc_txt, status === StageStatus.overdue ? warningStyle : {}]}>{descStr}</Text>
           <Image style={styles.card_arrow_img} source={require('../../../images/icons/arrow-dblue.png')} />
         </TouchableOpacity>
-      </View>
+      </View >
     )
   }
 }
