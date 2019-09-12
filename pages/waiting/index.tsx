@@ -82,6 +82,10 @@ export default class WaitingScreen extends Component<WaitingInterface, {}> {
     toast('点击了选择器')
   }
 
+  handleOnOfflinePress = () => {
+    toast('用户点击了线下还款')
+  }
+
   handleOnDetailPress = () => {
     this.setState({
       isModalOpen: true,
@@ -114,6 +118,7 @@ export default class WaitingScreen extends Component<WaitingInterface, {}> {
                   data={stageItem}
                   onSelect={this.handleOnSelectPress}
                   onDetailPress={this.handleOnDetailPress}
+                  onOfflineBtnPress={this.handleOnOfflinePress}
                 />
               )
             })

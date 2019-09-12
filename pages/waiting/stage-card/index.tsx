@@ -9,6 +9,7 @@ export interface StageCardInterface {
   data: StageItemInterface;
   onSelect: () => void;
   onDetailPress: () => void;
+  onOfflineBtnPress: () => void;
   // isSelected: boolean;
 }
 
@@ -70,15 +71,24 @@ export default class StageCard extends Component<StageCardInterface, {}> {
           {
             isOffline ?
               (
-                <View>
-                  <Text>xxx</Text>
+                <View style={styles.offline_wraper}>
+                  <TouchableOpacity
+                    style={styles.offline_btn_wraper}
+                    onPress={() => {
+                      const { onOfflineBtnPress } = this.props
+                      onOfflineBtnPress && onOfflineBtnPress()
+                    }}
+                  >
+                    <Image style={styles.question_img} source={require('../../../images/icons/question_white.png')} />
+                    <Text style={styles.offline_txt}>该期需线下还款</Text>
+                  </TouchableOpacity>
                 </View>
               ) :
               (
-                <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+                <>
                   <Text style={styles.card_bottom_plan_title_txt}>计划还款:</Text>
                   <Text style={styles.card_bottom_plan_money_txt}>{data.money_return_plan}元</Text>
-                </View>
+                </>
               )
           }
           <Text style={[styles.card_bottom_plan_desc_txt, status === StageStatus.overdue ? warningStyle : {}]}>{descStr}</Text>
@@ -172,6 +182,29 @@ const styles = StyleSheet.create({
     height: 26 * 0.4,
     marginLeft: 10,
     marginRight: 20,
-
+  },
+  offline_wraper: {
+    flex: 1,
+  },
+  offline_btn_wraper: {
+    width: 170,
+    marginLeft: 20,
+    flexDirection: 'row',
+    backgroundColor: '#F99F2A',
+    height: 30,
+    borderRadius: 15,
+    alignItems: 'center',
+  },
+  question_img: {
+    width: 14,
+    height: 14,
+    marginRight: 10,
+    marginLeft: 10,
+  },
+  offline_txt: {
+    opacity: 0.9,
+    fontSize: 15,
+    color: '#FFF',
   }
+
 })
