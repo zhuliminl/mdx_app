@@ -88,7 +88,6 @@ class Home extends React.Component {
           this.authCheck();
         }
         break;
-
       case 'logout':
         if (nextProps.navigation.state.params['params'] === true) this.setState({ showStatus: 0, showMy: false });
         break;
@@ -320,6 +319,7 @@ class Home extends React.Component {
   }
 
 
+  // ????? 这个应该后端来做判断吧
   checkOverForBorrowCard(order) {
     if (!(order && order.ok_at)) return;
     const endDate = moment(moment(order.ok_at).add(order.day_length - 1, 'days').format('YYYY-MM-DD 00:00:00'));
@@ -353,7 +353,7 @@ class Home extends React.Component {
       this.setState({ showStatus: 0 });
     }
 
-    console.log('FIN this.state', this.state)
+    // 以下全都是数据储存设定
     if (!this.state.needAliPay) {
       resp['alipay_status'] = true
     }
@@ -457,15 +457,16 @@ class Home extends React.Component {
     return (
       <View style={[styles.container, styles.containerAndroid]}>
 
-        <ScrollView refreshControl={
-          <RefreshControl
-            progressBackgroundColor='#ddd'
-            style={{
-              zIndex: 999,
-            }}
-            refreshing={this.state.refreshing}
-            onRefresh={() => { this.onRefresh() }} />
-        }
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              progressBackgroundColor='#ddd'
+              style={{
+                zIndex: 999,
+              }}
+              refreshing={this.state.refreshing}
+              onRefresh={() => { this.onRefresh() }} />
+          }
 
           alwaysBounceVertical={!this.state.showMy === true}
           style={[styles.container]}

@@ -58,6 +58,7 @@ export default class My extends React.Component {
   }
 
   async componentWillReceiveProps(nextProps) {
+    // console.log('FIN 更新我的个人中心', nextProps)
     this.setState({ hidden_status_bar: true, })
     switch (nextProps['show']) {
       case null:
@@ -129,11 +130,6 @@ export default class My extends React.Component {
   // 都有认证和登录的拦截
   goBorrowRecords() {
     this.setState({ hidden_status_bar: false, })
-    // FIXME: 暂时不管拦截
-    const { navigation } = this.props
-    if (navigation) {
-      return navigation.push('BorrowRecords')
-    }
 
     switch (this.props.showStatus) {
       case 0:
@@ -157,6 +153,10 @@ export default class My extends React.Component {
 
 
   getBank() {
+    const { showStatus } = this.props
+    if (showStatus === 0) {
+      return null
+    }
     const bankShow = [];
     if (this.state.bank) {
       bankShow.push(<Image key={11} style={styles.bankLogo} source={banksIcon[this.state.bank.bankCode]} />);
@@ -210,7 +210,13 @@ export default class My extends React.Component {
           <StatusBar hidden={this.state.hidden_status_bar} />
           <Animatable.View duration={300} animation={this.state.aName} style={styles.myBar}>
             <View style={styles.header}>
-              <TouchableOpacity style={styles.avatarOuter} onPress={() => { this.props.navigation.push('MyCenter') }}>
+              <TouchableOpacity style={styles.avatarOuter} onPress={() => {
+                const { showStatus } = this.props
+                if (showStatus === 0) {
+                  return this.props.navigation.push('Logup')
+                }
+                this.props.navigation.push('MyCenter')
+              }}>
                 <Image style={styles.avatar} source={require('../images/icons/avatar.png')} />
               </TouchableOpacity>
               <Text style={styles.account}>账户</Text>
@@ -226,7 +232,8 @@ export default class My extends React.Component {
                   <Text style={styles.lICT}>我的借款记录</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => {
+
+              {/* <TouchableOpacity onPress={() => {
                 this.goWaiting();
               }} style={styles.listItem}>
                 <Image
@@ -237,6 +244,7 @@ export default class My extends React.Component {
                   {this.getWaiting()}
                 </View>
               </TouchableOpacity>
+
               <TouchableOpacity style={styles.listItem} onPress={() => { this.goBorrowRecords() }}>
                 <Image
                   style={[styles.lIcon, styles.lIconBorrowOrder]}
@@ -244,7 +252,7 @@ export default class My extends React.Component {
                 <View style={styles.lIC}>
                   <Text style={styles.lICT}>我的借款单</Text>
                 </View>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
 
               <TouchableOpacity style={styles.listItem}>
                 <Image
