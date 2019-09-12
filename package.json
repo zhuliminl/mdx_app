@@ -42,6 +42,7 @@
     "react-native-pdf": "^5.0.9",
     "react-native-permissions": "^1.1.1",
     "react-native-pickers": "^2.0.0",
+    "react-native-popover-view": "^2.0.5",
     "react-native-randombytes": "^3.5.3",
     "react-native-restart": "^0.0.13",
     "react-native-root-toast": "^3.0.1",

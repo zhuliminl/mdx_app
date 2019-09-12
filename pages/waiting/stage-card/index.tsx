@@ -1,9 +1,11 @@
 
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import Popover from 'react-native-popover-view'
 import { StageItemInterface } from '../index'
 import { device } from '@/utils/device'
 import { StageStatus } from '@/utils/AppEnum'
+import OfflinePopover from '../offline-popover'
 
 export interface StageCardInterface {
   data: StageItemInterface;
@@ -16,16 +18,25 @@ export interface StageCardInterface {
 
 export default class StageCard extends Component<StageCardInterface, {}> {
   state = {
-    showOfflineNotice: true,
+    showOfflineNotice: false,
   }
 
   handleOnOfflineBtnPress = () => {
     const { onOfflineBtnPress } = this.props
     onOfflineBtnPress && onOfflineBtnPress()
+
+    this.setState({ showOfflineNotice: true })
+  }
+
+  onClosePopover = () => {
+    this.setState({
+      showOfflineNotice: false,
+    })
   }
 
   componentDidMount = () => {
   }
+  touchable: any
 
   render() {
     const { data = {} as StageItemInterface } = this.props
@@ -81,11 +92,35 @@ export default class StageCard extends Component<StageCardInterface, {}> {
               (
                 <View style={styles.offline_wraper}>
                   <TouchableOpacity
+                    ref={ref => this.touchable = ref as any}
                     style={styles.offline_btn_wraper}
                     onPress={this.handleOnOfflineBtnPress}
                   >
                     <Image style={styles.question_img} source={require('../../../images/icons/question_white.png')} />
                     <Text style={styles.offline_txt}>该期需线下还款</Text>
+                    {/* 弹窗 */}
+                    <Popover
+                      popoverStyle={{
+                        opacity: 0.9,
+                      }}
+                      isVisible={this.state.showOfflineNotice}
+                      fromView={this.touchable}
+                      arrowStyle={{
+                        backgroundColor: '#00099',
+                      }}
+                      displayArea={{
+                        x: -21,
+                        y: -100,
+                        width: device.width - 20,
+                        height: 100,
+                      }}
+                      mode={'tooltip'}
+                    >
+                      <OfflinePopover
+                        serviceTel={'13735881684'}
+                        onClosePopover={this.onClosePopover}
+                      />
+                    </Popover>
                   </TouchableOpacity>
                 </View>
               ) :

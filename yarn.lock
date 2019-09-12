@@ -5587,6 +5587,13 @@ react-native-pickers@^2.0.0:
   resolved "https://registry.yarnpkg.com/react-native-pickers/-/react-native-pickers-2.0.0.tgz#c18ee65ce148d52cadf7cbe0379ab07e7a945394"
   integrity sha512-qDAYKrHt0o8pfq/c59vO8JE31ehlrvE1Lo74gYskLe6ObSOH3jCHvo+iCLmwCWZNtIoLFoP6dKmfMrdgfnUK9w==
 
+react-native-popover-view@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-popover-view/-/react-native-popover-view-2.0.5.tgz#402767a7ef791cb5ec5c035f51755e579b0eaee3"
+  integrity sha512-F/GJxaRdmpHPX/rXBgeGkKRB3t7v8rS5ysEclSNcXtBe00rkhCNq74h0WKomQDPM1LYPETZ76mXIfHylEU7Awg==
+  dependencies:
+    react-native-safe-area-view "^0.14.6"
+
 react-native-randombytes@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/react-native-randombytes/-/react-native-randombytes-3.5.3.tgz#b3bdcd11473cce106551a586244b98855e443cd1"
@@ -5625,6 +5632,13 @@ react-native-safe-area-view@0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.11.0.tgz#4f3dda43c2bace37965e7c6aef5fc83d4f19d174"
   integrity sha512-N3nElaahu1Me2ltnfc9acpgt1znm6pi8DSadKy79kvdzKwvVIzw0IXueA/Hjr51eCW1BsfNw7D1SgBT9U6qEkA==
+  dependencies:
+    hoist-non-react-statics "^2.3.1"
+
+react-native-safe-area-view@^0.14.6:
+  version "0.14.8"
+  resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.14.8.tgz#ef33c46ff8164ae77acad48c3039ec9c34873e5b"
+  integrity sha512-MtRSIcZNstxv87Jet+UsPhEd1tpGe8cVskDXlP657x6rHpSrbrc+y13ZNXrwAgGNNhqQNX7UJT68ZIq//ZRmvw==
   dependencies:
     hoist-non-react-statics "^2.3.1"
 

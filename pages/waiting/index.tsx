@@ -64,7 +64,7 @@ const modalData = {
 
 export default class WaitingScreen extends Component<WaitingInterface, {}> {
   state = {
-    isModalOpen: true,
+    isModalOpen: false,
     modalData: {}
   }
 
@@ -83,7 +83,7 @@ export default class WaitingScreen extends Component<WaitingInterface, {}> {
   }
 
   handleOnOfflinePress = () => {
-    toast('用户点击了线下还款')
+    // toast('用户点击了线下还款')
   }
 
   handleOnDetailPress = () => {
