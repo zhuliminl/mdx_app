@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity, Linking } from 'react-native'
 import { device } from '@/utils/device';
 import toast from '@/utils/toast';
 
@@ -27,7 +27,11 @@ export default class OfflinePopover extends Component<OfflinePopoverInterface, {
         </TouchableOpacity>
         <Text style={styles.notice_txt}> 如需继续还款请联系客服: </Text>
         <TouchableOpacity onPress={() => {
-          toast('打电话')
+          try {
+            Linking.openURL(`tel:${serviceTel}`)
+          } catch (err) {
+            console.log('FIN 打电话错误')
+          }
         }}>
           <Text style={styles.notice_txt_red}>  {serviceTel} </Text>
         </TouchableOpacity>
