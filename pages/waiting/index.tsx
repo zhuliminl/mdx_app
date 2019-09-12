@@ -46,7 +46,7 @@ const stageData = [
     status: StageStatus.overdue,
     money_return_plan: 200,
     money_return_left: 100,
-    isSelected: true,
+    isSelected: false,
   },
   {
     stage: '第3期',

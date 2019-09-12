@@ -15,6 +15,14 @@ export interface StageCardInterface {
 
 
 export default class StageCard extends Component<StageCardInterface, {}> {
+  state = {
+    showOfflineNotice: true,
+  }
+
+  handleOnOfflineBtnPress = () => {
+    const { onOfflineBtnPress } = this.props
+    onOfflineBtnPress && onOfflineBtnPress()
+  }
 
   componentDidMount = () => {
   }
@@ -74,10 +82,7 @@ export default class StageCard extends Component<StageCardInterface, {}> {
                 <View style={styles.offline_wraper}>
                   <TouchableOpacity
                     style={styles.offline_btn_wraper}
-                    onPress={() => {
-                      const { onOfflineBtnPress } = this.props
-                      onOfflineBtnPress && onOfflineBtnPress()
-                    }}
+                    onPress={this.handleOnOfflineBtnPress}
                   >
                     <Image style={styles.question_img} source={require('../../../images/icons/question_white.png')} />
                     <Text style={styles.offline_txt}>该期需线下还款</Text>
@@ -172,10 +177,11 @@ const styles = StyleSheet.create({
   },
   card_overdue_badge_img: {
     position: 'absolute',
-    width: 50,
-    height: 50,
-    right: 0,
-    top: -40,
+    width: 40,
+    height: 40,
+    right: 5,
+    top: -30,
+
   },
   card_arrow_img: {
     width: 16 * 0.4,
