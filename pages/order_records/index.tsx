@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image, Text, StatusBar, ScrollView, StyleSheet, Platform, TouchableOpacity } from 'react-native'
+import { View, Image, Text, StatusBar, ScrollView, StyleSheet, Platform, TouchableOpacity, DeviceEventEmitter } from 'react-native'
 import { NavigationTransitionProps } from 'react-navigation'
 import Header from '@/components/header'
 import { device } from '@/utils/device'
@@ -43,7 +43,7 @@ const SECTIONS = [
       dateStr: '2018年10月09日',
       status: '审核中',
     },
-    _detail: [
+    detail: [
       {
         stage: '第1期',
         deadline: '2019年10月1日',
@@ -111,8 +111,9 @@ class OrderRecordsScreen extends React.Component<OrderRecordsProps, OrderRecords
                     detail.length > 0 &&
                     <View style={styles.content_wraper}>
                       <View style={styles.content_header_wraper}>
+                        <Image style={styles.content_bg} source={require('../../images/return_plan_header_bg_red.png')} />
                         <Text style={styles.content_header_txt}>期数</Text>
-                        <Text style={styles.content_header_txt}>应还时间</Text>
+                        <Text style={[styles.content_header_txt, { marginLeft: 24, }]}>应还时间</Text>
                         <Text style={styles.content_header_txt}>当前还款计划</Text>
                       </View>
                       {
@@ -210,7 +211,16 @@ const styles = StyleSheet.create({
   content_header_txt: {
     color: '#333',
     fontSize: 14,
+    marginTop: 4,
     fontWeight: 'bold',
+  },
+  content_bg: {
+    position: 'absolute',
+    top: 0,
+    left: 10,
+    width: device.width - 20,
+    height: (device.width - 20) * 80 / 690,
+
   },
   // 内容
   content_item_wraper: {
